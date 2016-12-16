@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django进阶课程</title>
+</head>
+<body>
+<p>欢迎来到Django进阶课程</p>
+{% load poll_extras %}
+{% get_current_time "%Y-%m-%d %I:%M %p" as allentime %}
+<p>It is {{ allentime }} </p>
+
+
+{% pomes_of_author "李白" %}
+</body>
+</html>
