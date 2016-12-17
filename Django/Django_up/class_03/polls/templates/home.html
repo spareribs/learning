@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django进阶课程</title>
+</head>
+<body>
+<p>欢迎来到Django进阶课程</p>
+<div>
+    {% for i in tmpValue %}
+        {{ i }}
+    {% endfor %}
+</div>
+<hr>
+<div>
+    {% for i in tmpValue %}
+        {% if i ==1 %}
+            {{ i }}
+        {% endif %}
+    {% endfor %}
+</div>
+<hr>
+<div>
+    {{ 1 + 2 }}
+    {{ 1 / 2 }}
+    {{ 10 % 3 }}
+    {{ 2 ** 3 }}
+    <hr>
+    {% set tmpInt = 10 %}
+    {{ tmpInt }}
+    <hr>
+    {{ -1 | abs }}
+    {{"abc" | capitalize | allen_lower }}
+</div>
+</body>
+</html>
