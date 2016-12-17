@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django进阶课程</title>
+</head>
+<body>
+<p>欢迎来到Django进阶课程</p>
+{% load poll_filter %}
+{% with "<h1>hello</h1>" as tmpValue %}
+    <p>{{ tmpValue | capfirst }}</p>
+    <hr>
+    <p>{{ tmpValue | add_no:"world" }}</p>
+    <hr>
+    <p>{{ tmpValue | add_yes:"world" }}</p>
+{% endwith %}
+
+</body>
+</html>
