@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>最原始的Form：全手工写</h1>
+<form action="." method="post">
+    {% csrf_token %}
+    <label>增加诗词信息: </label>
+    author:<input id="author" type="text" name="author" value="{[ author ]}">
+    title:<input id="title" type="text" name="title" value="{[ title ]}">
+    <input type="submit" value="OK">
+</form>
+
+<h1>最原始的Form：全手工写+前端表单验证</h1>
+<form action="." method="post">
+    {% csrf_token %}
+    <label>增加诗词信息: </label>
+    author:<input id="author2" type="text" name="author" maxlength="10" minlength="1" value="{[ author ]}">
+    title:<input id="title2" type="text" name="title" value="{[ title ]}">
+    <input type="submit" value="OK">
+</form>
+
+<h1>自定义From表单</h1>
+<p>{{ errors }}</p>
+<form action="." method="post">
+    {% csrf_token %}
+    <label>增加诗词信息: </label>
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+
+
+</body>
+</html>
