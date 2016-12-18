@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="." method="post"> {% csrf_token %}
+    <label >删除诗词: </label>
+    id:
+    <input id="id" type="text" name="id" value="{{ id }}">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

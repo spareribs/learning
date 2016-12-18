@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="." method="post"> {% csrf_token %}
+    <label >增加诗词信息: </label>
+    author:
+    <input id="author" type="text" name="author" value="{{ author }}">
+    title:
+    <input id="title" type="text" name="title" value="{{ title }}">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>
