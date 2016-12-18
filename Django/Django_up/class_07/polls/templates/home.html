@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django进阶教程</title>
+</head>
+<body>
+<p>欢迎来到Django进阶课程</p>
+<div>
+    {% for poem in poems %}
+        <p>
+            {{  poem.author }} {{ poem.title }}
+        </p>
+    {% endfor %}
+</div>
+
+<div>
+    {% for book in book2 %}
+        <p>
+            {{  book.author }} {{ book.title }}
+        </p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

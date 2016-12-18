@@ -1,222 +1,323 @@
 # 知识点
 
-- 模版是一个用django模版语言标记过的python字符串。模版可以包含模版标签和变量。
-- 模版标签是在一个模版里起作用的标记。比如，一个模版标签可以产生控制结构的内容(if或者for)，可以获取数据库内容或者访问其它模版标签。
-- 一个标签块被{%%}包围
-- 变量标签被{{}}包围
-- context是一个传递给模版的key-value对。
-- 模版渲染是通过从context获取值来替换模版中变量并执行所有的模版标签。
+1. Manager基本概念
+2. 简单使用默认Manager
+3. 为什么要定制Manager
+4. 编码定制
 
 # 参考文档
-[第十章: 深入模板引擎](http://djangobook.py3k.cn/chapter10/)
-代码地址： [Spareibs的Github](https://github.com/spareribs/learning/Django/Django_up/class_01/)
+[代码地址：Spareibs的Github](https://github.com/spareribs/learning/tree/master/Django/Django_up/class_04)
+
+# Manager基本概念
+
+Manager是django模型进行数据库查询操作的接口。Django 应用的每个模型都拥有至少一个管理器。
 
 # 实验步骤
-## 新创建一个templatetags的文件夹
 
-```
-|---templatetags
-    |---poll_extras.py
-```
-
-## 创建超级用户并启动程序
-
-```
-(env_py35_django) D:\MaiZi_Edu\Dropbox\Maizi\Django_up\class_01>python manage.py createsuperuser
-D:\MaiZi_Edu\Dropbox\Maizi\Django_up\class_01\my_blog\urls.py:22: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got polls.views.home). Pass the callable instead.
-  url(r'^$', 'polls.views.home'),
-
-Username (leave blank to use 'spareribs'): admin
-Email address: 370835062@qq.com
-Password:
-Password (again):
-This password is too short. It must contain at least 8 characters.
-This password is too common.
-Password:
-Password (again):
-Superuser created successfully.
-
-(env_py35_django) D:\MaiZi_Edu\Dropbox\Maizi\Django_up\class_01>python manage.py runserver
-```
-这里的管理员
-账号：admin
-密码是：adminadmin
-
-## 实验例子：根据指定的日期格式来显示日期的自定义标签
-
-### 方法一
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django进阶课程</title>
-</head>
-<body>
-<p>欢迎来到Django进阶课程</p>
-{% load poll_extras%}
-{% dateAllen "%Y-%m-%d %I:%M %p"%}
-<p>It is {{ mytime }} </p>
-</body>
-</html>
-```
+## app下面的modules.py文件先创建一个module
 
 ```python
-# 模块必须包含一个模块级的变量:register,这是一个template.Library的实例,可以使用它来创建模板的过滤器和标签了.
-register = template.Library()
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
 
-# 这是template.Node的一个模板节点
-class AllenDateNode(template.Node):
-    def __init__(self, format_string):
-        self.format_string = format_string
-
-    def render(self, context):
-        print(datetime.now().strftime(self.format_string))
-        print(datetime.now().strftime("%Y-%m-%d %I:%M %p"))
-        return datetime.now().strftime(self.format_string)
-
-# parser 是模板分析器对象,在这个例子中我们没有使用它
-# token.contents 是包含有标签原始内容的字符串.在我们的例子中,它是'dateAllen "%Y-%m-%d %I:%M %p"'.
-def dateAllen(parse, token):
-    try:
-        # token.split_contents() 方法按空格拆分参数同时保证引号中的字符串在一起.
-        tagname, format_string = token.split_contents()
-        print(str(token.contents.split(' ')) + '--------------------')
-        print(token.split_contents())
-    except ValueError:
-        raise template.TemplateSyntaxError("invalid agrs")
-    # 这个函数返回一个 AllenDateNode,是Node子类,返回其它值都是错的
-    return AllenDateNode(format_string[1:-1])
-
-# 注册标签:模块 Library 实例注册这个标签.
-register.tag(name="dateAllen", compile_function=dateAllen)
+    def __str__(self):
+        return "%s-%d" %(self.content,self.priority)
 ```
 
-- 可以使用装饰器优化注册的方法
+## 将ToDo的module注册[app下面的admin.py]
 
 ```python
-@register.tag()
-def dateAllen(parse, token):
-    try:
-        # token.split_contents() 方法按空格拆分参数同时保证引号中的字符串在一起.
-        tagname, format_string = token.split_contents()
-        print(str(token.contents.split(' ')) + '--------------------')
-        print(token.split_contents())
-    except ValueError:
-        raise template.TemplateSyntaxError("invalid agrs")
-    # 这个函数返回一个 AllenDateNode,是Node子类,返回其它值都是错的
-    return AllenDateNode(format_string[1:-1])
+from polls.models import ToDo
+admin.site.register(ToDo)
+```
+## 数据库同步
+
+同步完成以后，直接随机录入数据
+
+```cmd
+(env_py35_django) D:\MaiZi_Edu\Dropbox\Maizi\Django_up\class_04_ol>python manage.py makemigrations
+Migrations for 'polls':
+  0006_todo.py:
+    - Create model ToDo
+
+(env_py35_django) D:\MaiZi_Edu\Dropbox\Maizi\Django_up\class_04_ol>python manage.py migrate
+Operations to perform:
+  Apply all migrations: auth, sessions, polls, admin, contenttypes
+Running migrations:
+  Applying polls.0006_todo... OK
 ```
 
+## 修改url的配置
 
-### 方法二
-
-- 做成全局的模板变量,方便其他地方引用
-```python
-def render(self, context):
-    now = datetime.now().strftime(self.format_string)
-    context["mytime"] = now
-    return ""
-```
-但是这样子会把代码写死成mytime的硬编码
-
-- 优化硬编码问题
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django进阶课程</title>
-</head>
-<body>
-<p>欢迎来到Django进阶课程</p>
-{% load poll_extras%}
-{% dateAllen "%Y-%m-%d %I:%M %p" as allentime %}
-<p>It is {{ allentime }} </p>
-</body>
-</html>
-```
+### projects的urls的配置
 
 ```python
-class AllenDateNode(template.Node):
-    def __init__(self, format_string, asvar):
-        self.format_string = format_string
-        self.asvar = asvar
+from django.conf.urls import include
 
-    def render(self, context):
-        now = datetime.now().strftime(self.format_string)
-        if self.asvar:
-            context[self.asvar] = now
-            return ""
-        else:
-            return now
-
-
-@register.tag()
-def dateAllen(parse, token):
-    args = token.split_contents()
-    asvar = None
-    if len(args) == 4 and args[-2] == "as":
-        asvar = args[-1]
-    elif len(args) != 2:
-        raise template.TemplateSyntaxError("invalid agrs")
-    return AllenDateNode(args[1][1:-1], asvar)
+urlpatterns = [
+    url(r'', include('polls.urls')),
+]
 ```
 
-### 例子三：:assignment_tag
+### app的urls配置
+
+```python
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^todoList/', views.todoList, name="todoList")
+]
+```
+
+## 设置views文件
+
+```python
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.all()})
+```
+
+
+## 设置html模板
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Django进阶课程</title>
+    <title></title>
 </head>
 <body>
-<p>欢迎来到Django进阶课程</p>
-{% load poll_extras %}
-{% get_current_time "%Y-%m-%d %I:%M %p" as allentime %}
-<p>It is {{ allentime }} </p>
-
+<p> {{ showType }} </p>
+<div>
+    {% for todoItem in todoList %}
+        <p>
+        {{ todoItem.content }} {{ todoItem.is_done }} {{ todoItem.priority }}
+        </p>
+    {% endfor %}
+</div>
 </body>
 </html>
 ```
 
+---------------------
+
+## 自定义manger
+
+给ToDo自定义manger
 ```python
-@register.assignment_tag()
-def get_current_time(format_string):
-    return datetime.now().strftime(format_string)
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "%s-%d" %(self.content,self.priority)
+    
+    # 这燕子修改以后，views就不能用默认的objects来调用，提示：type object 'ToDo' has no attribute 'objects'
+    todolists = models.Manager()
 ```
 
-### 例子四:inclusion_tag
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django进阶课程</title>
-</head>
-<body>
-<p>欢迎来到Django进阶课程</p>
-{% pomes_of_author "李白" %}
-</body>
-</html>
+修改后的views文件
+```python
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.todolists.all()})
 ```
 
-```python
-@register.assignment_tag()
-def get_current_time(format_string):
-    return datetime.now().strftime(format_string)
+## 过滤数据
+
+### 使用filter方法
+```
+def todoList(request):
+    return render(request, 'todoList.html',
+                  {"showType": "所有事件列表", "todoList": ToDo.todolists.all().filter(is_done=False).filter(priority=1)})
 ```
 
-```python
-# 从模板中导入
-from polls.models import Poem
+### 自定义方法（未完成事件）
 
-# 
-@register.inclusion_tag("resultes.html")
-def pomes_of_author(author_name):
-    poems = Poem.objects.filter(author=author_name)
-    return {"pomes": poems, "author_name": author_name}
+先自定义一个子类【modules.py】
+```python
+# IncompleteTodoManager是继承Manager的一个子类，返回未完成的事件的结果集
+class IncompleteTodoManager(models.Manager):
+    # 重载get_queryset的方法
+    def get_queryset(self):
+        return super(IncompleteTodoManager, self).get_queryset().filter(is_done=False)
+```
+
+在模型中实例化【modules.py】
+```python
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "%s-%d" %(self.content,self.priority)
+
+    # 这燕子修改以后，views就不能用默认的objects来调用
+    todolists = models.Manager()
+    # 实例化一个IncompleteTodoManager，结果集是未完成的事件数据
+    incomplete = IncompleteTodoManager()
+```
+
+调用方法【views.py】
+```
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.incomplete.all()})
+```
+
+### 自定义方法（高优先级）
+
+先自定义一个子类【modules.py】
+```python
+class HighPriorityManager(models.Manager):
+    # 重载get_queryset的方法
+    def get_queryset(self):
+        return super(HighPriorityManager, self).get_queryset().filter(priority=1)
+
+```
+
+在模型中实例化【modules.py】
+```python
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "%s-%d" %(self.content,self.priority)
+
+    # 这燕子修改以后，views就不能用默认的objects来调用
+    todolists = models.Manager()
+    # 实例化一个IncompleteTodoManager，结果集是未完成的事件数据
+    incomplete = IncompleteTodoManager()
+    high = HighPriorityManager()
+```
+
+调用方法【views.py】
+```
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.high.all()})
+```
+
+### 一个子类同时定义两个方法
+
+先自定义一个子类【modules.py】
+```python
+class ToDoManager(models.Manager):
+    def incomplete(self):
+        return self.filter(is_done=False)
+
+    def high(self):
+        return self.filter(priority=1)
+```
+
+在模型中实例化【modules.py】
+```python
+class ToDo(models.Model):
+    # 实例化
+    objects = ToDoManager()
+```
+
+
+调用方法【views.py】
+```python
+# 输出所有未完成的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.incomplete()})
+
+# 输出指定优先级的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.high()})
+```
+
+### 通过QuerySet方法来实现
+
+先自定义一个子类【modules.py】
+```
+class TodoQuerySet(models.QuerySet):
+    def incomplete(self):
+        return self.filter(is_done=False)
+
+    def high(self):
+        return self.filter(priority=1)
+
+class NewTodoManager(models.Manager):
+    def get_queryset(self):
+        return TodoQuerySet(self.model, using=self._db)
+```
+
+在模型中实例化【modules.py】
+```
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "%s-%d" %(self.content, self.priority)
+
+    # 实例化
+    objects = NewTodoManager()
+```
+
+调用方法【views.py】
+```python
+# 输出指定优先级的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.all().high().})
+    
+# 输出所有未完成指定优先级的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.all().high().incomplete()})
+```
+
+### 优化QuerySet方法来实现的Manger,减少all()方法的调用
+
+
+先自定义一个子类【modules.py】
+```
+class TodoQuerySet(models.QuerySet):
+    def incomplete(self):
+        return self.filter(is_done=False)
+
+    def high(self):
+        return self.filter(priority=1)
+
+class NewTodoManager(models.Manager):
+    def get_queryset(self):
+        return TodoQuerySet(self.model, using=self._db)
+
+    def incomplete(self):
+        return self.get_queryset().incomplete()
+
+    def high(self):
+        return self.get_queryset().high()
+```
+
+在模型中实例化【modules.py】
+```
+class ToDo(models.Model):
+    content = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+    priority = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "%s-%d" %(self.content, self.priority)
+
+    # 实例化
+    objects = NewTodoManager()
+```
+调用方法【views.py】
+```python
+# 输出指定优先级的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects).high().})
+    
+# 输出所有未完成指定优先级的事件
+def todoList(request):
+    return render(request, 'todoList.html', {"showType": "所有事件列表", "todoList": ToDo.objects.high().incomplete()})
 ```
