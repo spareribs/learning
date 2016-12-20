@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+
+{% load i18n admin_urls %}
+
+{% block content %}
+    <form action="" method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <ul>
+        {% for ob in objects %}
+            <li>{{ ob }}</li>
+        {% endfor %}
+    </ul>
+    <!--value是admin的内容-->
+    <input type="hidden" name="action" value="set_type_action">
+    <input type="hidden" name="post" value="yes">
+    <input type="submit" name="apply" value="set">
+    </form>
+{% endblock %}
