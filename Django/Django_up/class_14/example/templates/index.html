@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            // CSRF code
+            function getCookie(name) {
+                var cookieValue = null;
+                var i = 0;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (i; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                crossDomain: false, // obviates need for sameOrigin test
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type)) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+            $('.get-more').click(function () {
+                $.ajax({
+                    // 通过get请求获取更多的pome信息
+                    type: "GET",
+                    url: "/ajax/more",
+                    dataType: 'json',
+                    success: function (data) {
+                        // 先将内容转换成字符串
+                        json_str = JSON.stringify(data)
+                        // 再将字符串格式化
+                        json_data = JSON.parse(json_str)
+                        // 遍历json_data
+                        for (var i in json_data) {
+                            item = json_data[i];
+                            $('ul').append('<li>' + item.poem_id + " " + item.author + '</li>')
+                        }
+                    }
+                })
+            });
+
+            $('.add-poem').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/add/",
+                    dataType: 'text',
+                    data: {"poems": $(".textArea").val()},
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+
+            });
+
+        });</script>
+</head>
+
+<body>
+<div class="container">
+    <div class="container">
+        <h3>Poems:</h3>
+        <ul>
+            <li>Results:</li>
+        </ul>
+        <button class="btn get-more">Get More Poems</button>
+    </div>
+    <div class="container">
+        <label>Poems</label>
+        <textarea class="textArea" id="textArea" rows="10" cols="70"> </textarea>
+        <button class="btn add-poem">Add Poem</button>
+    </div>
+</div>
+</body>
+</html>
