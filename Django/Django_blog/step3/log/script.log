@@ -1,0 +1,25 @@
+2016-12-24 14:31:43,036 [Thread-2:752] [django.request:170] [base:get_response] [WARNING]- Not Found: /
+2016-12-24 14:31:43,153 [Thread-3:3228] [django.request:170] [base:get_response] [WARNING]- Not Found: /
+2016-12-24 14:31:43,928 [Thread-4:8984] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2016-12-24 16:25:33,042 [Thread-2:13108] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /index/a.html
+Traceback (most recent call last):
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\MaiZi_Edu\Dropbox\Maizi\Django_blog\django_blog\blog\views.py", line 29, in index
+    return render(request, 'index.html', locals())
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\backends\django.py", line 74, in render
+    return self.template.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 208, in render
+    with context.bind_template(self):
+  File "C:\Python27\Lib\contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\context.py", line 235, in bind_template
+    updates.update(processor(self.request))
+TypeError: global_setting() takes no arguments (1 given)
+2016-12-25 21:58:47,443 [Thread-2:11624] [django.request:170] [base:get_response] [WARNING]- Not Found: /
+2016-12-25 21:58:48,051 [Thread-3:2732] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2016-12-25 22:14:02,565 [Thread-2:13980] [django.request:170] [base:get_response] [WARNING]- Not Found: /
