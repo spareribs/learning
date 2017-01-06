@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+{% include 'baseblock/ads.html' %}
+<!-- banner代码 结束 -->
+<div class="topnews">
+    <h2>最新文章</h2>
+    {% for article in article_list%}
+    <div class="blogs">
+        <ul>
+            <h3><a href='{% url "article" %}?id={{ article.id }}'>{{ article.title }}</a></h3>
+            <p>{{ article.desc }}</p>
+            <p class="autor">
+                <span class="lm f_l">
+                    {% for tag in article.tag.all %}
+                    <a href="/">{{ tag.name }}</a>&nbsp;
+                    {% endfor %}
+                </span>
+                <span class="dtime f_l">{{ article.date_publish | date:'Y-m-d' }}</span>
+                <span class="viewnum f_r">浏览（<a href="/">{{ article.click_count }}</a>）</span>
+                <span class="pingl f_r">评论（<a href="/">{{ article.comment_set.all.count }}</a>）</span>
+            </p>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+<div id="pagination">
+    <ul id="pagination-flickr">
+        <li class="previous-off">&laquo;上一页</li>
+        <li class="active">1/10</li>
+        <li class="next"><a href="?page=8">下一页 &raquo;</a></li>
+    </ul>
+</div>
+{% endblock %}

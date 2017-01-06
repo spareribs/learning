@@ -1,0 +1,50 @@
+<div class="moreSelect" id="lp_right_select">
+    <script>
+        window.onload = function () {
+            var oLi = document.getElementById("tab").getElementsByTagName("li");
+            var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].index = i;
+                oLi[i].onmouseover = function () {
+                    for (var n = 0; n < oLi.length; n++) oLi[n].className = "";
+                    this.className = "cur";
+                    for (var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+                    oUl[this.index].style.display = "block"
+                }
+            }
+        }
+    </script>
+    <div class="ms-top">
+        <ul class="hd" id="tab">
+            <li class="cur"><a href="/">浏览排行</a></li>
+            <li><a href="/">评论排行</a></li>
+            <li><a href="/">站长推荐</a></li>
+        </ul>
+    </div>
+    <div class="ms-main" id="ms-main">
+        <div style="display: block;" class="bd bd-news">
+            <ul>
+                {% for article_click in article_click_list %}
+                <li><a href='{% url "article" %}?id={{ article_click.id }}' target="_blank">{{ article_click }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="bd bd-news">
+            <ul>
+                {% for article_comment in article_comment_list %}
+                <li><a href='{% url "article" %}?id={{ article_comment.id }}' target="_blank">{{ article_comment }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="bd bd-news">
+            <ul>
+                {% for article_recommend in article_recommend_list %}
+                <li><a href='{% url "article" %}?id={{ article_recommend.id }}' target="_blank">{{ article_recommend }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!--ms-main end -->
+</div>
+<!--切换卡 moreSelect end -->

@@ -1,0 +1,107 @@
+2017-01-02 21:07:35,398 [Thread-2:16800] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Spareribs\Github\django_blog\step2_logging\blog\views.py", line 27, in index
+    return render(request, 'index.html', locals())
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\backends\django.py", line 74, in render
+    return self.template.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 209, in render
+    return self._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 151, in render
+    template = context.template.engine.get_template(template)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 167, in get_template
+    template, origin = self.find_template(template_name, dirs)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 146, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: baseblock/vavigation.html
+2017-01-02 21:07:37,990 [Thread-3:13436] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Spareribs\Github\django_blog\step2_logging\blog\views.py", line 27, in index
+    return render(request, 'index.html', locals())
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\backends\django.py", line 74, in render
+    return self.template.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 209, in render
+    return self._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 151, in render
+    template = context.template.engine.get_template(template)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 167, in get_template
+    template, origin = self.find_template(template_name, dirs)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 146, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: baseblock/vavigation.html
+2017-01-02 21:07:39,226 [Thread-4:19492] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Spareribs\Github\django_blog\step2_logging\blog\views.py", line 27, in index
+    return render(request, 'index.html', locals())
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\backends\django.py", line 74, in render
+    return self.template.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 209, in render
+    return self._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\debug.py", line 79, in render_node
+    return node.render(context)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\loader_tags.py", line 151, in render
+    template = context.template.engine.get_template(template)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 167, in get_template
+    template, origin = self.find_template(template_name, dirs)
+  File "D:\virtualenv\env_py27_django_blog\lib\site-packages\django\template\engine.py", line 146, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: baseblock/vavigation.html
+2017-01-02 21:08:02,134 [Thread-10:19760] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js
+2017-01-02 21:08:02,272 [Thread-11:20056] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js

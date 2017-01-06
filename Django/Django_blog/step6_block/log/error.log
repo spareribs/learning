@@ -1,0 +1,1 @@
+2017-01-02 21:14:55,730 [Thread-2:20476] [blog.views:62] [views:archive] [ERROR]- 'WSGIRequest' object has no attribute 'url'

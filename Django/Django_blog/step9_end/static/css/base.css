@@ -1,0 +1,271 @@
+@charset "gb2312";
+/* 共用css */
+* { margin: 0; padding: 0 }
+body { font: 12px/1.5 'Microsoft Yahei', 'Simsun'; color: #666666; background: #fff }
+img { border: 0; display: block }
+ul { list-style: none; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+a { outline: none; }
+a:link, a:visited { text-decoration: none; color: #666 }
+a:hover { text-decoration: none; }
+.clear { clear: both; }
+.blank { height: 5px; overflow: hidden; width: 100%; margin: auto; clear: both }
+.f_l { float: left }
+.f_r { float: right }
+.l_box { width: 670px; }
+.r_box { width: 300px; }
+/* 头部信息 */
+header { width: 1000px; margin: 20px auto; overflow: hidden; clear: both; }
+#topnav { width: 100%; background: #48AE15; height: 46px; line-height: 46px; text-align: left; border-radius: 46px; }
+#topnav ul{ margin-left:50px; }
+#topnav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; padding: 0 20px; }
+#topnav a:hover { background: #fff; color: #000; }
+#topnav a { color: #FFF }
+#topnav_current { background: #F3FF41; }/* 高亮选中颜色 */
+a#topnav_current { color: #000 }
+article { width: 1000px; margin: 20px auto; }
+/*footer*/
+footer { background: #333; width: 100%; clear: both; text-align: center; }
+.ft-copyright { color: #fff; line-height: 24px; }
+.ft-list { background: url(../images/ft-wx-s.png) no-repeat right; height: 100px }
+/*返回顶部*/
+*html { background-image: url(about:blank); background-attachment: fixed; }/*解决IE6下滚动抖动的问题*/
+#tbox { width: 54px; float: right; position: fixed; right: 50px; bottom: 15px; _position: absolute; _bottom: auto; _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+_margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
+#togbook, #gotop { width: 54px; height: 56px; display: block; background: url(../images/icons.png) no-repeat #111; box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(0,0,0,.7); border-radius: 6px; }
+#togbook { margin: 5px 0; background-position: 10px -36px; }
+#gotop { background-position: 12px 10px; }
+#togbook:hover, #gotop:hover { opacity: 0.5 }
+/*标签云*/
+.cloud { width: 100%; clear: both; overflow: hidden }
+.cloud h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; }
+.cloud ul { margin: 20px 0 }
+.cloud ul li { line-height: 24px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
+.cloud ul li a { color: #FFF }
+.cloud ul li:nth-child(8n-7) { background: #8A9B0F }
+.cloud ul li:nth-child(8n-6) { background: #EB6841 }
+.cloud ul li:nth-child(8n-5) { background: #3FB8AF }
+.cloud ul li:nth-child(8n-4) { background: #FE4365 }
+.cloud ul li:nth-child(8n-3) { background: #FC9D9A }
+.cloud ul li:nth-child(8n-2) { background: #EDC951 }
+.cloud ul li:nth-child(8n-1) { background: #C8C8A9 }
+.cloud ul li:nth-child(8n) { background: #83AF9B }
+.cloud ul li:first-child { background: #036564 }
+.cloud ul li:last-child { background: #3299BB }
+.cloud ul li:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+/* 切换卡 */
+.moreSelect { width: 100%; margin: 30px 0 20px 0; overflow: hidden }
+.ms-top { height: 32px; border-bottom: solid 1px #EAEAEA; font-size: 14px }
+#tab li a { float: left; height: 32px; cursor: pointer; line-height: 32px; list-style-type: none; padding: 0 15px; }
+#tab li.cur a { color: #fff; background: #f77825; }
+.bd { display: none }
+.bd-news ul { padding: 10px 0 0 10px; background: url(../images/ph2.png) no-repeat 10px 29px; }
+.bd-news ul li { border-bottom: solid 1px #EAEAEA; line-height: 30px; height: 30px; overflow: hidden; font-size: 14px; padding: 10px 0 0 30px; }
+.bd-news ul li a { display: block; }
+.bd-news ul li a:hover { color: #000; }
+.bd-news ul li:hover { border-bottom: #000 1px solid; }/* 鼠标放上去的效果 */
+.logo{ margin-bottom:20px; padding-left:10px; }
+.logo h1{ font-size:30px; font-weight:blod; }
+.font-size-18{ font-size:18px; }
+
+/*分页效果*/
+#pagination{ float:right; margin:10px 0; }
+#pagination-flickr li { border:0; margin:0; padding:0; font-size:11px; list-style:none; /* savers */ float:left; }
+#pagination-flickr a { border:solid 1px #DDDDDD; margin-right:2px; }
+#pagination-flickr .previous-off,#pagination-flickr .next-off { color:#666666; display:block; float:left; font-weight:bold; padding:3px 4px; }
+#pagination-flickr .next a,#pagination-flickr .previous a { font-weight:bold; border:solid 1px #FFFFFF; }	
+#pagination-flickr .active { color:#ff0084; font-weight:bold; display:block; float:left; padding:4px 6px; }
+#pagination-flickr a:link, 
+#pagination-flickr a:visited { color:#0063e3; display:block; float:left; padding:3px 6px; text-decoration:none; }
+#pagination-flickr a:hover { border:solid 1px #000; background:#0063DC; color:#FFF; }
+
+/*文章详情*/
+.postdate{float: left;display: block;background: url(../images/date.gif) no-repeat;height: 48px;width: 48px;line-height: 160%; margin-left: 10px; margin-right: 10px;}
+.month{text-transform: uppercase;text-align: center;color: #fcfff5;font-size: 12px;}
+.date{text-align: center;margin-top: 2px;font-size: 18px;}
+.postmeta{color: #666666;font-size: 12px;}
+.postmeta_category{background: url(../images/category.gif) no-repeat;padding: 0 5px 0 18px;}
+.postmeta_comments{background: url(../images/comments.gif) no-repeat;padding-left: 18px;}
+.postmeta_author{background: url(../images/author.gif) no-repeat;padding: 0 5px 0 18px;}
+.postmeta_time{background: url(../images/time.gif) no-repeat;padding-left: 18px;}
+.postmeta_category a{color: #666666;}
+.postmeta_comments a{color: #666666;}
+.title{height: 48px;}
+.title h2{line-height: 120%;}
+.title h2 a{color: #3e606f;font-size: 20px;line-height: 140%;}
+.title h2 a:hover{color: #db5104;}
+.title .postmeta a:hover{color: #db5104;}
+.entry {
+	margin: 20px 0 5px 0;
+	margin-left: 10px;
+	padding-bottom: 5px;
+	border-bottom: 1px dashed #cccccc;
+}
+
+.entry a {
+	text-decoration: none;
+	color: #0066cc;
+	/*border-bottom: 1px dotted #0066cc;*/
+}
+
+.entry a:hover {
+	text-decoration: underline;
+	color: #db5104;
+	/*border-bottom: 1px solid #db5104;*/
+}
+
+.tags {
+	background: url(../images/tags.gif) no-repeat;
+	padding-left: 20px;
+	margin-left: 10px;
+	color: #666666;
+}
+
+.tags a {
+	color: #666666;
+	text-decoration: none;
+}
+
+.tags a:hover {
+	color: #db5104;
+	text-decoration: none;
+}
+
+.info {
+	padding: 10px 0;
+	color: #666666;
+	margin-left: 10px;
+}
+
+.info a{
+	color: #666666;
+}
+
+.info a:hover{
+	color: #ff5400;
+}
+
+/*------------------------ Comments ------------------------*/
+
+.commentstitle {
+	border-top: 1px solid #e3e5e4;
+}
+
+h3 {
+	color: #3e606f;
+	font-size: 18px;
+	line-height: 130%;
+}
+
+.commentstitle h3 {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.commentsnumber {
+	color: #db5104;
+}
+
+.trackback {
+	float: right;
+	padding-top: 10px;
+	padding-right: 12px;
+}
+
+.trackback a {
+	color: #999999;
+	font-size: 12px;
+}
+
+.commentlist {
+	color: #666666;
+	list-style-type: none;
+	padding: 10px 12px;
+}
+
+.commentlist a {
+	color: #0066cc;
+}
+
+.commentlist a:hover {
+	color: #db5104;
+	border-bottom: 1px solid #db5104;
+}
+
+.commentlist li {
+	border-bottom: 1px solid #e3e5e4;
+	padding: 15px 5px 30px 5px;
+}
+
+.alt {
+	background-color: #f9f9f9;
+}
+
+.top, .time a {
+	color: #999999;
+}
+
+.avatar {
+	float: right;
+	width: 32px;
+	height: 32px;
+	display: block;
+	padding: 2px;
+	border: 1px solid #dddddd;
+	margin: 5px;
+}
+
+/*------------------------ Comments Form ------------------------*/
+
+#respond {
+	font-size: 18px;
+	color: #3e606f;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+#commentform p {
+	margin-bottom: 15px;
+}
+
+input#author, input#email, input#url, textarea#comment {
+	margin-left: 12px;
+	border: 2px solid #e3e5e4;
+	padding: 2px;
+	width: 200px;
+	background-color: #f9f9f9;
+} 
+
+textarea#comment {
+	width: 450px;
+	height: 200px;
+}
+
+input#author:focus, input#email:focus, input#url:focus, textarea#comment:focus {
+	color: #666666;
+	border: 2px solid #f1b39b;
+	background-color: #ffffff;
+}
+
+label {
+	margin-left: 5px;
+	font-size: 12px;
+}
+
+input#submit {
+	margin-left: 12px;
+	background-color: #f9f9f9;
+	border: 2px solid #e3e5e4;
+	width: 80px;
+	padding: 2px 5px;
+	color: #666666;
+	font-size: 12px;
+}
+
+.login_info{
+	margin: 10px;
+}
+
+.reply{
+	padding-left:30px;
+}

@@ -1,0 +1,15 @@
+2017-01-02 12:48:56,658 [Thread-3:2188] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js
+2017-01-02 12:48:56,882 [Thread-4:12632] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 12:53:52,062 [Thread-3:5604] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 12:56:03,581 [Thread-10:440] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 13:27:41,973 [Thread-45:2568] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 13:28:41,790 [Thread-7:13252] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 13:28:57,040 [Thread-8:2924] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 13:29:09,994 [Thread-18:12432] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 13:59:24,089 [Thread-25:868] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 14:08:28,608 [Thread-19:11944] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 14:11:46,677 [Thread-21:2556] [django.request:170] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015
+2017-01-02 14:12:56,615 [Thread-24:1448] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 14:30:11,365 [Thread-37:12020] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 21:11:23,355 [Thread-7:19360] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js
+2017-01-02 21:11:23,486 [Thread-8:18912] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js

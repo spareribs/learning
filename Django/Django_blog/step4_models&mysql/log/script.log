@@ -1,0 +1,6 @@
+2017-01-02 12:48:56,658 [Thread-3:2188] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js
+2017-01-02 12:48:56,882 [Thread-4:12632] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 12:53:52,062 [Thread-3:5604] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 12:56:03,581 [Thread-10:440] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2017-01-02 21:10:06,555 [Thread-7:21112] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js
+2017-01-02 21:10:06,667 [Thread-8:21116] [django.request:170] [base:get_response] [WARNING]- Not Found: /js/nav.js

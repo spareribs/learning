@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load myfilter %}
+{% block left_content %}
+<div class="postdate">
+    <div class="month">{{ article.date_publish | month_to_upper }}</div>
+    <div class="date">{{ article.date_publish | date:'d' }}</div>
+</div>
+<div class="title">
+    <h2><a href="" rel="bookmark" title="{{ article.title }}">{{ article.title }}</a></h2>
+    <div class="postmeta">
+        <span class="postmeta_author">{{ article.user.username }}</span>
+        <span class="postmeta_category"><a href="" rel="category">{{ article.category.name }}</a></span>
+        <span class="postmeta_time">{{ article.date_publish | date:'Y-m-d' }}</span>
+    </div>
+</div>
+<div class="entry">
+    {{ article.content | safe }}
+</div>
+<span class="tags">
+    {% for tag in article.tag.all %}
+    <a href="?tag={{ tag.name }}" rel="tag">{{ tag.name }}</a>
+    {% endfor %}
+</span>
+
+<ol class="commentlist">
+    {% for comment in comment_list %}
+    <li id="comment-59418">
+        <div class="top"><a href='{{ comment.url }}' rel='external nofollow' class='url'>{{ comment.username }}</a><span
+                class="time"> @ <a href="#comment-59418" title="">{{ comment.date_publish | date:'Y-m-d H:i:s' }}</a></span></div>
+        <div><img alt='' src="{% static 'images/default.jpg' %}" class='avatar avatar-32 photo' height='32' width='32'/>
+        </div>
+
+        <div class="body">
+            <p>{{ comment.content }}</p>
+        </div>
+    </li>
+        {% for children_comment in comment.children_comment %}
+        <li id="comment-59542">
+            <div class="reply">
+                <div class="top"><a href="{{ children_comment.url }}" rel="external nofollow" class="url">{{ children_comment.username }}</a><span class="time"> @ <a href="#comment-59543" title="">{{ children_comment.date_publish | date:'Y-m-d H:i:s' }}</a></span></div>
+                <div><img alt="" src="{% static 'images/default.jpg' %}" class="avatar avatar-32 photo" height="32" width="32"></div>
+                <div class="body">
+                    {{ children_comment.content }}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    {% endfor %}
+</ol>
+
+<div id="commentform">
+    {% if not request.user.is_authenticated %}
+    <div class='login_info'>还没有登陆？可以登录后再评论哦。<b><a href="{% url 'login' %}">&raquo;去登录</a>&nbsp;<a href="{% url 'reg' %}">&raquo;去注册</a></b></div>
+    {% else %}
+    <div class='login_info'><b>{{ request.user.username }}</b>,快来写点评论吧!&nbsp;<a href="{% url 'logout' %}">注销</a></div>
+    {% endif %}
+    <form action="{% url 'comment_post' %}" method="post">
+        {% csrf_token %}
+        <p>{{ comment_form.author }}<label for="author">Name (required)</label></p>
+        <p>{{ comment_form.email }}<label for="email">Email (Will NOT be published) (required)</label></p>
+        <p>{{ comment_form.url }}<label for="url">URL</label></p>
+        <p>{{ comment_form.comment }}</p>
+        <p>{{ comment_form.article }}<input name="submit" type="submit" id="submit" tabindex="5" value="Submit" class="button"/></p>
+    </form>
+</div>
+
+{% endblock %}

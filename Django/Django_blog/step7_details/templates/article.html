@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load myfilter %}
+{% block left_content %}
+<div class="postdate">
+    <div class="month">{{ article.date_publish | month_to_upper }}</div>
+    <div class="date">{{ article.date_publish | date:'d' }}</div>
+</div>
+<div class="title">
+    <h2><a href="" rel="bookmark" title="{{ article.title }}">{{ article.title }}</a></h2>
+    <div class="postmeta">
+        <span class="postmeta_author">{{ article.user.username }}</span>
+        <span class="postmeta_category"><a href="" rel="category">{{ article.category.name }}</a></span>
+        <span class="postmeta_time">{{ article.date_publish | date:'Y-m-d' }}</span>
+    </div>
+</div>
+<div class="entry">
+    {{ article.content | safe }}
+</div>
+<span class="tags">
+    {% for tag in article.tag.all %}
+    <a href="?tag={{ tag.name }}" rel="tag">{{ tag.name }}</a>
+    {% endfor %}
+</span>
+{% endblock %}

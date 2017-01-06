@@ -1,0 +1,13 @@
+[uwsgi]
+socket = 127.0.0.1:9090
+master = true 
+vhost = true 
+no-site = true 
+workers = 2 
+reload-mercy = 10     
+vacuum = true 
+max-requests = 1000   
+limit-as = 512
+buffer-size = 30000
+pidfile = /var/run/uwsgi9090.pid 
+daemonize = /website/uwsgi9090.log

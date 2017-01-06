@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+{% include 'baseblock/ads.html' %}
+<div class="banner">
+    <div id="slide-holder">
+        <div id="slide-runner"><a href="/" target="_blank"><img id="slide-img-1"
+                                                                src="{% static 'images/a1.jpg' %}" alt=""/></a>
+            <a href="/" target="_blank"><img id="slide-img-2" src="{% static 'images/a2.jpg' %}" alt=""/></a> <a
+                    href="/" target="_blank"><img id="slide-img-3" src="{% static 'images/a3.jpg' %}"
+                                                  alt=""/></a> <a href="/" target="_blank"><img id="slide-img-4"
+                                                                                                src="{% static 'images/a4.jpg' %}"
+                                                                                                alt=""/></a>
+            <div id="slide-controls">
+                <p id="slide-client" class="text"><strong></strong><span></span></p>
+                <p id="slide-desc" class="text"></p>
+                <p id="slide-nav"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (!window.slider) {
+            var slider = {};
+        }
+
+        slider.data = [
+            {
+                "id": "slide-img-1", // 与slide-runner中的img标签id对应
+                "client": "标题1",
+                "desc": "这里修改描述 这里修改描述 这里修改描述" //这里修改描述
+            },
+            {
+                "id": "slide-img-2",
+                "client": "标题2",
+                "desc": "add your description here"
+            },
+            {
+                "id": "slide-img-3",
+                "client": "标题3",
+                "desc": "add your description here"
+            },
+            {
+                "id": "slide-img-4",
+                "client": "标题4",
+                "desc": "add your description here"
+            }
+        ];
+
+    </script>
+</div>
+<!-- banner代码 结束 -->
+<div class="topnews">
+    <h2>最新文章</h2>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">住在手机里的朋友</a></h3>
+            <p>
+                通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊
+                ...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">教你怎样用欠费手机拨打电话</a></h3>
+            <p>初次相识的喜悦，让你觉得似乎找到了知音。于是，对于投缘的人，开始了较频繁的交往。渐渐地，初识的喜悦退尽，接下来就是仅仅保持着联系，平淡到偶尔在节假曰发短信互致问候...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">原来以为，一个人的勇敢是，删掉他的手机号码...</a></h3>
+            <p>原来以为，一个人的勇敢是，删掉他的手机号码、QQ号码等等一切，努力和他保持距离。等着有一天，习惯不想念他，习惯他不在身边,习惯时间把他在我记忆里的身影磨蚀干净... </p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+    <div class="blogs">
+        <ul>
+            <h3><a href="/">手机的16个惊人小秘密，据说99.999%的人都不知</a></h3>
+            <p>引导语：知道么，手机有备用电池，手机拨号码12593+电话号码=陷阱……手机具有很多你不知道的小秘密，说出来一定很惊奇！不信的话就来看看吧！...</p>
+            <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span
+                    class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a
+                    href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+    </div>
+</div>
+<div id="pagination">
+    <ul id="pagination-flickr">
+        <li class="previous-off">&laquo;上一页</li>
+        <li class="active">1/10</li>
+        <li class="next"><a href="?page=8">下一页 &raquo;</a></li>
+    </ul>
+</div>
+{% endblock %}
